@@ -1,0 +1,21 @@
+{
+  "name": "@voorhoede/scaleway-functions-deploy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Use this action to deploy to Scaleway Functions",
+  "author": "Voorhoede",
+  "main": ".lib-action/index.js",
+  "scripts": {
+    "build": "tsc && ncc build src/index.ts -o .lib-action"
+  },
+  "dependencies": {
+    "@actions/core": "1.11.1",
+    "@actions/github": "7.0.0",
+    "@sindresorhus/slugify": "3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "25.0.9",
+    "@vercel/ncc": "0.38.4",
+    "typescript": "5.9.3"
+  }
+}
