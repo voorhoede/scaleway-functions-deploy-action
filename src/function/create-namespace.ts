@@ -1,13 +1,12 @@
 import { getInput } from "@actions/core";
-import { context } from "@actions/github";
-import { sanitizeName } from "./utils/sanitizeName";
+import { BUCKET_ENDPOINT, REGION } from "../constants";
 
-export const createNamespace = async () => {
-  const secretKey = getInput("scw_secret_key");
+export const createNamespace = async ({ namespaceName }: { namespaceName: string }) => {
+  const secretKey = getInput("scw_secret_access_key");
   const projectId = getInput("scw_project_id");
 
   const url = new URL(
-    "https://api.scaleway.com/functions/v1beta1/regions/nl-ams/namespaces",
+    `https://api.scaleway.com/functions/v1beta1/regions/${REGION}/namespaces`,
   );
 
   const response = await fetch(url, {
@@ -17,8 +16,11 @@ export const createNamespace = async () => {
       "Content-Type": "application/json",
     }),
     body: JSON.stringify({
-      name: sanitizeName(context.repo.repo),
+      name: namespaceName,
       project_id: projectId,
+      environment_variables: {
+        BUCKET_ENDPOINT: BUCKET_ENDPOINT,
+      }
     }),
   });
 

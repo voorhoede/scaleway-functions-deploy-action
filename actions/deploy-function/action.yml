@@ -1,0 +1,25 @@
+name: Deploy Function to Scaleway
+author: Voorhoede
+description: Deploy a serverless function to Scaleway Functions
+
+inputs:
+  scw_region:
+    description: Scaleway region (e.g. nl-ams, fr-par)
+    required: true
+  scw_secret_access_key:
+    description: Scaleway Secret Access Key
+    required: true
+  scw_project_id:
+    description: The id of the Scaleway project
+    required: true
+  dist_path:
+    description: Path to the dist root directory (e.g. dist). The function.zip file will be uploaded from there.
+    required: true
+
+runs:
+  using: "node24"
+  main: ".lib/index.js"
+
+branding:
+  color: purple
+  icon: upload-cloud

@@ -1,13 +1,14 @@
 import { getInput } from "@actions/core";
 import { context } from "@actions/github";
-import { sanitizeName } from "./utils/sanitizeName";
+import { sanitizeName } from "../utils/sanitizeName";
+import { REGION } from "../constants";
 
-export const createServerlessFunction = async ({ namespaceId }: { namespaceId: string }) => {
-  const secretKey = getInput("scw_secret_key");
-  const branchName = context.ref.replace("refs/heads/", "");
+export const createFunction = async ({ namespaceId }: { namespaceId: string }) => {
+  const secretKey = getInput("scw_secret_access_key");
+  const branchName = sanitizeName(context.ref.replace("refs/heads/", ""));
 
   const url = new URL(
-    "https://api.scaleway.com/functions/v1beta1/regions/nl-ams/functions",
+    `https://api.scaleway.com/functions/v1beta1/regions/${REGION}/functions`,
   );
 
   const response = await fetch(url, {

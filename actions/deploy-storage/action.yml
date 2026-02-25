@@ -1,0 +1,28 @@
+name: Deploy Storage to Scaleway
+author: Voorhoede
+description: Deploy static assets to Scaleway Object Storage
+
+inputs:
+  scw_region:
+    description: Scaleway region (e.g. nl-ams, fr-par)
+    required: true
+  scw_access_key_id:
+    description: Scaleway Access Key ID
+    required: true
+  scw_secret_access_key:
+    description: Scaleway Secret Access Key
+    required: true
+  scw_project_id:
+    description: The id of the Scaleway project
+    required: true
+  dist_path:
+    description: Path to the dist root directory (e.g. dist). The client subdirectory will be uploaded to storage.
+    required: true
+
+runs:
+  using: "node24"
+  main: ".lib/index.js"
+
+branding:
+  color: purple
+  icon: upload-cloud

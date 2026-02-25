@@ -43,7 +43,7 @@ jobs:
       - name: Deploy to Scaleway Functions
         uses: voorhoede/poc-scaleway-functions-deploys@v1
         with:
-          scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+          scw_secret_access_key: ${{ secrets.scw_secret_access_key }}
           scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
 ```
 
@@ -84,7 +84,7 @@ jobs:
       - name: Deploy to Scaleway Functions
         uses: voorhoede/poc-scaleway-functions-deploys@v1
         with:
-          scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+          scw_secret_access_key: ${{ secrets.scw_secret_access_key }}
           scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
 ```
 
@@ -92,7 +92,7 @@ jobs:
 
 | Input | Description | Required | Default |
 |-------|-------------|----------|---------|
-| `scw_secret_key` | Your Scaleway Secret Key (API token) | ✅ Yes | - |
+| `scw_secret_access_key` | Your Scaleway Secret Key (API token) | ✅ Yes | - |
 | `scw_project_id` | Your Scaleway Project ID | ✅ Yes | - |
 
 ## How It Works
@@ -133,7 +133,7 @@ function.zip
 1. Go to the [Scaleway Console](https://console.scaleway.com/)
 2. Navigate to "Credentials" in your account settings
 3. Create a new API key with appropriate permissions
-4. Copy the Secret Key and add it to your repository secrets as `SCW_SECRET_KEY`
+4. Copy the Secret Key and add it to your repository secrets as `scw_secret_access_key`
 
 ### Finding Your Project ID
 
@@ -146,7 +146,7 @@ Add these secrets to your repository (Settings → Secrets and variables → Act
 
 | Secret Name | Description |
 |-------------|-------------|
-| `SCW_SECRET_KEY` | Your Scaleway Secret Key (API token) |
+| `scw_secret_access_key` | Your Scaleway Secret Key (API token) |
 | `SCW_PROJECT_ID` | Your Scaleway Project ID |
 
 ## Function Naming
@@ -182,7 +182,7 @@ Make sure you create a `function.zip` file before calling this action:
 ```
 
 ### "Invalid Secret Key"
-- Verify your `SCW_SECRET_KEY` is correct
+- Verify your `scw_secret_access_key` is correct
 - Make sure the API key has the necessary permissions for Serverless Functions
 - Check that the secret is properly set in your repository
 

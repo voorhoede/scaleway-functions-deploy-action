@@ -4,18 +4,26 @@
   "private": true,
   "description": "Use this action to deploy to Scaleway Functions",
   "author": "Voorhoede",
-  "main": ".lib-action/index.js",
   "scripts": {
-    "build": "tsc && ncc build src/index.ts -o .lib-action"
+    "build": "tsc --noEmit && ncc build actions/deploy-storage/src/index.ts -o actions/deploy-storage/.lib && ncc build actions/deploy-function/src/index.ts -o actions/deploy-function/.lib",
+    "test": "jiti test.ts"
   },
   "dependencies": {
-    "@actions/core": "1.11.1",
-    "@actions/github": "7.0.0",
-    "@sindresorhus/slugify": "3.0.0"
+    "@actions/core": "3.0.0",
+    "@actions/github": "9.0.0",
+    "@aws-sdk/client-s3": "3.994.0",
+    "@aws-sdk/lib-storage": "3.994.0",
+    "@sindresorhus/slugify": "3.0.0",
+    "fast-glob": "3.3.3",
+    "jiti": "2.6.1",
+    "mime-types": "3.0.2"
   },
   "devDependencies": {
-    "@types/node": "25.0.9",
+    "@types/glob": "9.0.0",
+    "@types/mime-types": "3.0.1",
+    "@types/node": "25.3.0",
     "@vercel/ncc": "0.38.4",
+    "dotenv": "17.3.1",
     "typescript": "5.9.3"
   }
 }
